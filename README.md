@@ -25,3 +25,8 @@ Los usuarios pueden realizar las siguientes accciones:
 - Cerrar Sesión
 - Login en caso de haber cerrado sesión
 
+##Pruebas
+Las pruebas realizadas se encuentran en archivo titulado "Pruebas Proyecto Python.xlsx" el cual se encuentra en el repositorio.
+
+## Video Demostración:
+insertar url del video
