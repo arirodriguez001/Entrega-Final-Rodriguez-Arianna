@@ -1,0 +1,43 @@
+{% extends 'thriftshop/home.html' %}
+
+{% block content %}
+
+<br>
+<br>
+
+<div class="container">
+
+<p><h4>{{remera.titulo}}</h4></p>
+
+{% if remera.imagenArticulo %}
+    <p><img src="{{remera.imagenArticulo.url}}" alt=""></p>
+{% endif %}
+<p>Marca: {{remera.marca}}</p>
+<p>Talle: {{remera.talle}}</p>
+<p>Descripción: {{remera.descripcion}}</p>
+<p>Año: {{remera.year}}</p>
+<p>Precio(US$): {{remera.precio}}</p>
+<p>Teléfono de Contacto: {{remera.telefonoContacto}}</p>
+<p>Email de Contacto: {{remera.emailContacto}}</p>
+
+</div>
+<br>
+<div class="container">
+    <h4>Comentarios...</h4>
+    <br>
+    <div class="container">
+    {% if not remera.comentarios.all %}
+        No han comentado este articulo
+    {% else %}
+        {% for comentario in remera.comentarios.all %}
+        <p><strong>{{comentario.nombre}}</strong></p>
+        <p>{{comentario.mensaje}}</p>
+        <p><small>{{comentario.fechaComentario}}</small></p>
+        <hr>
+        {% endfor %}
+    {% endif %}
+    <a href="{% url 'comentario' remera.pk %}">Agrega un Comentario</a>
+    </div>
+</div>
+<br>
+{% endblock %}

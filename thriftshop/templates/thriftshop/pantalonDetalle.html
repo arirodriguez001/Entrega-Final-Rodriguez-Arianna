@@ -1,0 +1,42 @@
+{% extends 'thriftshop/home.html' %}
+
+{% block content %}
+
+<br>
+<br>
+
+<div class="container">
+
+<p><h4>{{pantalon.titulo}}</h4></p>
+{% if pantalon.imagenArticulo %}
+    <p><img src="{{pantalon.imagenArticulo.url}}" alt=""></p>
+{% endif %}
+<p>Marca: {{pantalon.marca}}</p>
+<p>Talle: {{pantalon.talle}}</p>
+<p>Descripción: {{pantalon.descripcion}}</p>
+<p>Año: {{pantalon.year}}</p>
+<p>Precio(US$): {{pantalon.precio}}</p>
+<p>Teléfono de Contacto: {{pantalon.telefonoContacto}}</p>
+<p>Email de Contacto: {{pantalon.emailContacto}}</p>
+
+</div>
+<br>
+<div class="container">
+    <h4>Comentarios...</h4>
+    <br>
+    <div class="container">
+    {% if not pantalon.comentarios.all %}
+        No han comentado este articulo
+    {% else %}
+        {% for comentario in pantalon.comentarios.all %}
+        <p><strong>{{comentario.nombre}}</strong></p>
+        <p>{{comentario.mensaje}}</p>
+        <p><small>{{comentario.fechaComentario}}</small></p>
+        <hr>
+        {% endfor %}
+    {% endif %}
+    <a href="{% url 'comentario' pantalon.pk %}">Agrega un Comentario</a>
+    </div>
+</div>
+
+{% endblock %}

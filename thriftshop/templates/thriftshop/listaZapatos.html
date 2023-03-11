@@ -1,0 +1,40 @@
+{% extends 'thriftshop/home.html' %}
+
+{% block content %}
+
+<br>
+<br>
+
+
+
+
+
+<div class="container text-center">
+    <h1>ZAPATOS</h1>
+</div>
+
+<br>
+
+<div class="container text-center">
+    <div class="row">
+            {% for zapato in zapatos %}
+            <div class="col-sm-6 align-items-center">
+                <div class="card-body">
+                <img src="{{zapato.imagenArticulo.url}}" class="" width="100px">
+                {{zapato.titulo}}
+                <a href="{% url 'zapato' zapato.id %}"><i class="bi bi-eye"></i></a>
+                {% if user.id == zapato.usuario.id %}
+                <a href="{% url 'zapato_editar' zapato.id %}"><i class="bi bi-pencil-fill"></i></a>
+                <a href="{% url 'zapato_eliminar' zapato.id %}"><i class="bi bi-trash text-danger"></i></a>
+                <br>
+                <br>
+                <br>
+                <br>
+                {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

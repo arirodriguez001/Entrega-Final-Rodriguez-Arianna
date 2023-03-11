@@ -1,0 +1,42 @@
+{% extends 'thriftshop/home.html' %}
+
+{% block content %}
+
+<br>
+<br>
+
+<div class="container">
+
+<p><h4>{{cartera.titulo}}</h4></p>
+{% if cartera.imagenArticulo %}
+    <p><img src="{{cartera.imagenArticulo.url}}" alt=""></p>
+{% endif %}
+<p>Marca: {{cartera.marca}}</p>
+<p>Talle: {{cartera.talle}}</p>
+<p>Descripción: {{cartera.descripcion}}</p>
+<p>Año: {{cartera.year}}</p>
+<p>Precio(US$): {{cartera.precio}}</p>
+<p>Teléfono de Contacto: {{cartera.telefonoContacto}}</p>
+<p>Email de Contacto: {{cartera.emailContacto}}</p>
+
+</div>
+<br>
+<div class="container">
+    <h4>Comentarios...</h4>
+    <br>
+    <div class="container">
+    {% if not cartera.comentarios.all %}
+        No han comentado este articulo
+    {% else %}
+        {% for comentario in cartera.comentarios.all %}
+        <p><strong>{{comentario.nombre}}</strong></p>
+        <p>{{comentario.mensaje}}</p>
+        <p><small>{{comentario.fechaComentario}}</small></p>
+        <hr>
+        {% endfor %}
+    {% endif %}
+    <a href="{% url 'comentario' cartera.pk %}">Agrega un Comentario</a>
+    </div>
+</div>
+<br>
+{% endblock %}
